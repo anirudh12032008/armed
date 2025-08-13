@@ -1,37 +1,53 @@
-      MOV R0, #0x000000
-      MOV R1, #PixelScreen
-      ADD R1, R1, #1024 
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
-      ADD R1, R1, #4
-      STR R0, [R1]
+      MOV R11,#.black
+      MOV R12,#.white
+      MOV R1,#screen2
+      ADD R3,R1,#12288
+clr:
+      STR R12,[R1]
+      ADD R1,R1,#4
+      CMP R1,R3
+      BLT clr
+      MOV R2,#screen2
+      MOV R7,#1
+      MOV R8,#16
+      MOV R4,#4456
+dl:
+      MOV R9,R8
+      MOV R10,R4
+      MOV R6,#0
+drl:
+      STR R11,[R2,R4]
+      ADD R4,R4,#4
+      ADD R6,R6,#1
+      CMP R6,R7
+      BLT drl
+      MOV R4,R10
+      MOV R8,R9
+      CMP R8,#9
+      BGT ep
+      ADD R4,R4,#256
+      ADD R4,R4,#4
+      SUB R7,R7,#2
+      B cl
+ep:
+      ADD R4,R4,#256
+      SUB R4,R4,#4
+      ADD R7,R7,#2
+cl:
+      SUB R8,R8,#1
+      CMP R8,#0
+      BNE dl
+c2:
+      MOV R1,#.PixelScreen
+      MOV R2,#screen2
+      ADD R3,R1,#12288
+copy:
+      LDR R0,[R2]
+      STR R0,[R1]
+      ADD R1,R1,#4
+      ADD R2,R2,#4
+      CMP R1,R3
+      BLT copy
       HALT
       .ALIGN 1024
-PixelScreen: .DATA
+screen2:.DATA
