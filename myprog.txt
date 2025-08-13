@@ -1,0 +1,3 @@
+      MOV R2,#msg
+      STR R2,.WriteString
+msg:  .ASCIZ "Hello World\n"
