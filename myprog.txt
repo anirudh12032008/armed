@@ -1,3 +1,37 @@
-      MOV R2,#msg
-      STR R2,.WriteString
-msg:  .ASCIZ "Hello World\n"
+      MOV R0, #0x000000
+      MOV R1, #PixelScreen
+      ADD R1, R1, #1024 
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      ADD R1, R1, #4
+      STR R0, [R1]
+      HALT
+      .ALIGN 1024
+PixelScreen: .DATA
