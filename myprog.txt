@@ -8,35 +8,37 @@ clr:
       CMP R1,R3
       BLT clr
       MOV R2,#screen2
-      MOV R7,#1
-      MOV R8,#16
-      MOV R4,#4456
-dl:
-      MOV R9,R8
-      MOV R10,R4
-      MOV R6,#0
-drl:
-      STR R11,[R2,R4]
-      ADD R4,R4,#4
-      ADD R6,R6,#1
-      CMP R6,R7
-      BLT drl
-      MOV R4,R10
-      MOV R8,R9
-      CMP R8,#9
-      BGT ep
-      ADD R4,R4,#256
-      ADD R4,R4,#4
-      SUB R7,R7,#2
-      B cl
-ep:
-      ADD R4,R4,#256
-      SUB R4,R4,#4
-      ADD R7,R7,#2
-cl:
-      SUB R8,R8,#1
+      MOV R4,#0
+      MOV R5,#0
+rl:
+      MOV R9,R5
+      MOV R6,#64
+      AND R7,R5,#1
+      CMP R7,#0
+      BEQ er
+or:
+      MOV R8,#0
+      B dr
+er:
+      MOV R8,#1
+dr:
       CMP R8,#0
-      BNE dl
+      BEQ db
+      STR R12,[R2,R4]
+      MOV R8,#0
+      B np
+db:
+      STR R11,[R2,R4]
+      MOV R8,#1
+np:
+      ADD R4,R4,#4
+      SUB R6,R6,#1
+      CMP R6,#0
+      BNE dr
+      MOV R5,R9
+      ADD R5,R5,#1
+      CMP R5,#48
+      BLT rl
 c2:
       MOV R1,#.PixelScreen
       MOV R2,#screen2
