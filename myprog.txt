@@ -26,11 +26,19 @@ dr:
       BEQ db
       STR R12,[R2,R4]
       MOV R8,#0
-      B np
+      B delay
 db:
       STR R11,[R2,R4]
       MOV R8,#1
-np:
+delay:
+      MOV R0,#10000 
+dl:
+      SUB R0,R0,#1
+      CMP R0,#0
+      BNE dl
+      LDR R0,[R2,R4]
+      MOV R1,#.PixelScreen
+      STR R0,[R1,R4]
       ADD R4,R4,#4
       SUB R6,R6,#1
       CMP R6,#0
@@ -39,17 +47,6 @@ np:
       ADD R5,R5,#1
       CMP R5,#48
       BLT rl
-c2:
-      MOV R1,#.PixelScreen
-      MOV R2,#screen2
-      ADD R3,R1,#12288
-copy:
-      LDR R0,[R2]
-      STR R0,[R1]
-      ADD R1,R1,#4
-      ADD R2,R2,#4
-      CMP R1,R3
-      BLT copy
       HALT
       .ALIGN 1024
 screen2:.DATA
