@@ -1,4 +1,4 @@
-      MOV R11,#.black
+      MOV R11,#0xFF0000
       MOV R12,#.white
       MOV R1,#screen2
       ADD R3,R1,#12288
@@ -14,8 +14,23 @@ rl:
       MOV R9,R5
       MOV R6,#64
 dr:
-      ADD R7,R5,R6
-      AND R8,R7,#7
+      MOV R10, #63
+      SUB R7, R10, R6
+      CMP R6, R7
+      BLT mdx
+      MOV R7, R6
+mdx:
+      MOV R13, #47 
+      SUB R8, R13, R5
+      CMP R5, R8
+      BLT mdy
+      MOV R8, R5
+mdy:
+      CMP R7, R8
+      BLT min_d
+      MOV R7, R8
+min_d:
+      AND R8, R7, #1
       CMP R8,#0
       BEQ db
       B dw
