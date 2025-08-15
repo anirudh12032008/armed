@@ -13,29 +13,23 @@ clr:
 rl:
       MOV R9,R5
       MOV R6,#64
-      AND R7,R5,#1
-      CMP R7,#0
-      BEQ er
-or:
-      MOV R8,#0
-      B dr
-er:
-      MOV R8,#1
 dr:
+      ADD R7,R5,R6
+      AND R8,R7,#7
       CMP R8,#0
       BEQ db
-      STR R12,[R2,R4]
-      MOV R8,#0
-      B delay
+      B dw
 db:
       STR R11,[R2,R4]
-      MOV R8,#1
-delay:
-      MOV R0,#10000 
+      B dl
+dw:
+      STR R12,[R2,R4]
 dl:
+      MOV R0,#10000 
+dly:
       SUB R0,R0,#1
       CMP R0,#0
-      BNE dl
+      BNE dly
       LDR R0,[R2,R4]
       MOV R1,#.PixelScreen
       STR R0,[R1,R4]
