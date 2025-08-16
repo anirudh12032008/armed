@@ -2,60 +2,156 @@
       MOV R12,#.white
       MOV R1,#screen2
       ADD R3,R1,#12288
-clr:
+clr1:
       STR R12,[R1]
       ADD R1,R1,#4
       CMP R1,R3
-      BLT clr
+      BLT clr1
       MOV R2,#screen2
       MOV R4,#0
       MOV R5,#0
-rl:
+rl1:
       MOV R9,R5
       MOV R6,#64
-dr:
+dr1:
       MOV R10, #63
       SUB R7, R10, R6
       CMP R6, R7
-      BLT mdx
+      BLT mdx1
       MOV R7, R6
-mdx:
+mdx1:
       MOV R13, #47 
       SUB R8, R13, R5
       CMP R5, R8
-      BLT mdy
+      BLT mdy1
       MOV R8, R5
-mdy:
+mdy1:
       CMP R7, R8
-      BLT min_d
+      BLT min_d1
       MOV R7, R8
-min_d:
+min_d1:
       AND R8, R7, #1
       CMP R8,#0
-      BEQ db
-      B dw
-db:
+      BEQ db1
+      B dw1
+db1:
       STR R11,[R2,R4]
-      B dl
-dw:
+      B dl1
+dw1:
       STR R12,[R2,R4]
-dl:
+dl1:
       MOV R0,#10000 
-dly:
+dly1:
       SUB R0,R0,#1
       CMP R0,#0
-      BNE dly
+      BNE dly1
       LDR R0,[R2,R4]
       MOV R1,#.PixelScreen
       STR R0,[R1,R4]
       ADD R4,R4,#4
       SUB R6,R6,#1
       CMP R6,#0
-      BNE dr
+      BNE dr1
       MOV R5,R9
       ADD R5,R5,#1
       CMP R5,#48
-      BLT rl
+      BLT rl1
+      B art2
+art2:
+      MOV R11,#.black
+      MOV R12,#.white
+      MOV R1,#screen2
+      ADD R3,R1,#12288
+clr2:
+      STR R12,[R1]
+      ADD R1,R1,#4
+      CMP R1,R3
+      BLT clr2
+      MOV R2,#screen2
+      MOV R4,#0
+      MOV R5,#0
+rl2:
+      MOV R9,R5
+      MOV R6,#64
+dr2:
+      ADD R7,R5,R6
+      AND R8,R7,#7
+      CMP R8,#0
+      BEQ db2
+      B dw2
+db2:
+      STR R11,[R2,R4]
+      B dl2
+dw2:
+      STR R12,[R2,R4]
+dl2:
+      MOV R0,#10000
+dly2:
+      SUB R0,R0,#1
+      CMP R0,#0
+      BNE dly2
+      LDR R0,[R2,R4]
+      MOV R1,#.PixelScreen
+      STR R0,[R1,R4]
+      ADD R4,R4,#4
+      SUB R6,R6,#1
+      CMP R6,#0
+      BNE dr2
+      MOV R5,R9
+      ADD R5,R5,#1
+      CMP R5,#48
+      BLT rl2
+      B art3
+art3:
+      MOV R11,#.black
+      MOV R12,#.white
+      MOV R1,#screen2
+      ADD R3,R1,#12288
+clr3:
+      STR R12,[R1]
+      ADD R1,R1,#4
+      CMP R1,R3
+      BLT clr3
+      MOV R2,#screen2
+      MOV R4,#0
+      MOV R5,#0
+rl3:
+      MOV R9,R5
+      MOV R6,#64
+      AND R7,R5,#1
+      CMP R7,#0
+      BEQ er3
+or3:
+      MOV R8,#0
+      B dr3
+er3:
+      MOV R8,#1
+dr3:
+      CMP R8,#0
+      BEQ db3
+      STR R12,[R2,R4]
+      MOV R8,#0
+      B delay3
+db3:
+      STR R11,[R2,R4]
+      MOV R8,#1
+delay3:
+      MOV R0,#10000
+dl3:
+      SUB R0,R0,#1
+      CMP R0,#0
+      BNE dl3
+      LDR R0,[R2,R4]
+      MOV R1,#.PixelScreen
+      STR R0,[R1,R4]
+      ADD R4,R4,#4
+      SUB R6,R6,#1
+      CMP R6,#0
+      BNE dr3
+      MOV R5,R9
+      ADD R5,R5,#1
+      CMP R5,#48
+      BLT rl3
       HALT
       .ALIGN 1024
 screen2:.DATA
