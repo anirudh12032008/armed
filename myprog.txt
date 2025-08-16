@@ -58,7 +58,7 @@ dly1:
       BLT rl1
       B art2
 art2:
-      MOV R11,#.black
+      MOV R11,#0x0000FF
       MOV R12,#.white
       MOV R1,#screen2
       ADD R3,R1,#12288
@@ -103,7 +103,7 @@ dly2:
       BLT rl2
       B art3
 art3:
-      MOV R11,#.black
+      MOV R11,#0xFF00FF
       MOV R12,#.white
       MOV R1,#screen2
       ADD R3,R1,#12288
