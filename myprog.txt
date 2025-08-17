@@ -152,6 +152,54 @@ dl3:
       ADD R5,R5,#1
       CMP R5,#48
       BLT rl3
+      B art4
+      156
+art4:
+      MOV R11,#0x00FF00 
+      MOV R12,#.white 
+      MOV R1,#screen2
+      ADD R3,R1,#12288
+clr4:
+      STR R12,[R1]
+      ADD R1,R1,#4
+      CMP R1,R3
+      BLT clr4
+      MOV R2,#screen2
+      MOV R4,#0
+      MOV R5,#0 
+rl4:
+      MOV R9,R5
+      MOV R6,#64 
+dr4:
+      MOV R7,R5
+      LSR R7,R7,#2 
+      ADD R7,R7,R6 
+      AND R8,R7,#7 
+      CMP R8,#0
+      BEQ db4
+      B dw4
+db4:
+      STR R11,[R2,R4] 
+      B dl4
+dw4:
+      STR R12,[R2,R4] 
+dl4:
+      MOV R0,#10000
+dly4:
+      SUB R0,R0,#1
+      CMP R0,#0
+      BNE dly4
+      LDR R0,[R2,R4]
+      MOV R1,#.PixelScreen
+      STR R0,[R1,R4]
+      ADD R4,R4,#4
+      SUB R6,R6,#1
+      CMP R6,#0
+      BNE dr4
+      MOV R5,R9
+      ADD R5,R5,#1
+      CMP R5,#48
+      BLT rl4
       HALT
       .ALIGN 1024
 screen2:.DATA
