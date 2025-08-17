@@ -5,12 +5,13 @@ I even added few delays with the help of a cool hack of using computations to cr
 
 It was really fun and pain to work with ARM assembly especially the pixel display part!!
 
+
 ## How to Run
 ## Use the ARMLite simulator --- https://peterhigginson.co.uk/ARMlite/
 ( its designed to be used with ARMLite simulator )
 1. Open the ARMLite simulator in your browser
-2. Copy the code from `myprog.txt`
-3. Paste it into the editor
+2. Copy the code from `myprog.txt` or download the file
+3. Paste it into the editor or click load to load the file
 4. Click "Submit" to assemble and run
 
 ## Screenshot and videos
